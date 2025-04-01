@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Build files
+dist/
+build/
+
+# Config & dependencies
+.env
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Redux devtools
+redux/
+*.cache
+
+# JSON Server database
+db.json
+
+# Git y sistema operativo
+.git/
+*.swp
+*.swo
+Thumbs.db
