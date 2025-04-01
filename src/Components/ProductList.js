@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from '../actions/index'
 
-export const ProducList = () => {
+export const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
 
