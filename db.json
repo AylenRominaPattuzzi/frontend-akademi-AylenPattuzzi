@@ -1,22 +1,13 @@
 {
   "products": [
     {
-      "id": "2",
-      "name": "iPhone 13",
-      "category": "celular",
-      "price": 979999,
-      "stock": 15,
-      "description": "Celular de Apple",
-      "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_973345-MLA47781591382_102021-F.webp"
-    },
-    {
-      "id": "3",
       "name": "Samsung Galaxy S23 Ultra",
+      "price": "1",
       "category": "celular",
-      "price": 1249999,
       "stock": 20,
-      "description": "Celular Samsung con cámara de 200MP",
-      "image_url": "https://www.oscarbarbieri.com/pub/media/catalog/product/cache/7baadf0dec41407c7702efdbff940ecb/s/a/samsung_s23_ultra.jpg"
+      "description": "Celular Samsung con cámara de 200MP fsdfdsfsdfdffd",
+      "image_url": "https://www.oscarbarbieri.com/pub/media/catalog/product/cache/7baadf0dec41407c7702efdbff940ecb/s/a/samsung_s23_ultra.jpg",
+      "id": "3"
     },
     {
       "id": "4",
@@ -73,13 +64,13 @@
       "image_url": "https://i.ebayimg.com/thumbs/images/g/MJEAAOSwRg5lMu8Z/s-l500.jpg"
     },
     {
-      "id": "11",
-      "name": "Consola PlayStation 5",
+      "name": "s",
+      "price": "9",
       "category": "consola",
-      "price": 2299999,
-      "stock": 6,
+      "stock": "1",
       "description": "Consola de última generación de Sony",
-      "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_863469-MLA46481854659_062021-F.webp"
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_863469-MLA46481854659_062021-F.webp",
+      "id": "11"
     },
     {
       "id": "12",
@@ -89,6 +80,33 @@
       "stock": 4,
       "description": "Cámara mirrorless con sensor full frame",
       "image_url": "https://www.bhphotovideo.com/images/fb/canon_eos_r6_mirrorless_digital_1573880.jpg"
+    },
+    {
+      "id": "80ef",
+      "name": "prueba",
+      "category": "laptop",
+      "price": 2,
+      "stock": 3,
+      "description": "",
+      "image_url": null
+    },
+    {
+      "id": "ad20",
+      "name": "hjhjhhhj",
+      "category": "celular",
+      "price": 2,
+      "stock": 1,
+      "description": "",
+      "image_url": null
+    },
+    {
+      "id": "7eeb",
+      "name": "hj",
+      "category": "monitor",
+      "price": 1,
+      "stock": 1,
+      "description": "",
+      "image_url": null
     }
   ]
 }

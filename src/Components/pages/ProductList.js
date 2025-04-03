@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, fetchProducts } from '../../actions/index';
-import Modal from '../custom/Modal';
+import { deleteProduct, fetchProducts } from '../../store/actions/index';
+import Modal from '../modals/Modal';
 import noImage from '../../img/noImage.png'
+import { connect } from 'react-redux';
+import { Header } from '../common/Header';
 
-export const ProductList = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
-
+const ProductList = ({ products, fetchProducts, deleteProduct }) => {
   const [productsPerPage, setProductsPerPage] = useState(9)
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
@@ -18,8 +16,9 @@ export const ProductList = () => {
   const [order, setOrder] = useState()
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    fetchProducts();
+  }, [fetchProducts, products]);
+
 
   const handleDeleteClick = (product) => {
     setSelectedProduct(product);
@@ -28,12 +27,12 @@ export const ProductList = () => {
 
   const confirmDelete = () => {
     if (selectedProduct) {
-      dispatch(deleteProduct(selectedProduct.id));
-      setShowMessage(true)
+      deleteProduct(selectedProduct.id);
+      setShowMessage(true);
       setOpen(false);
       setSelectedProduct(null);
-      setTimeout(() => setShowMessage(false), 2000)
-
+      setTimeout(() => setShowMessage(false), 2000);
+      fetchProducts();
     }
   };
 
@@ -86,7 +85,7 @@ export const ProductList = () => {
   }
 
   return (
-    <div>
+    <div className='ui segment'>
       {showMessage && (
         <div className="ui positive message">
           <div className="header">
@@ -94,7 +93,10 @@ export const ProductList = () => {
           </div>
         </div>
       )}
-      <h1 className='ui center aligned header' style={{ backgroundColor: '#A5C5EB', color: 'white' }}>LISTADO DE PRODUCTOS</h1>
+      <Header
+        title='LISTADO DE PRODUCTOS'
+      />
+      <br />
       <div>
         <div className="ui action input">
           <input
@@ -131,7 +133,7 @@ export const ProductList = () => {
         </div>
 
         {getTableProducts().length === 0 ?
-      
+
           <h2 className="ui center aligned icon grey header">
             <i className="ban grey icon"></i>
             No hay productos disponibles
@@ -153,20 +155,14 @@ export const ProductList = () => {
                   {getTableProducts().map(product => (
                     <tr key={product.id}>
                       <td>{product.name}</td>
-                      <td>{product.category}</td>
+                      <td>{product.category[0].toUpperCase() + product.category.substring(1)}</td>
                       <td>${product.price}</td>
                       <td>{product.stock}</td>
                       <td>{product.description}</td>
                       <td><img src={product.image_url || noImage} width='50' alt="" /></td>
                       <td>
-                        <a className='ui green basic icon button' href="/add-product">
-                          <i className="plus icon" />
-                        </a>
                         <a className='ui blue basic icon button' href={`/product/${product.id}`}>
                           <i className='eye icon' />
-                        </a>
-                        <a className='ui grey basic icon button' href="">
-                          <i className="pencil alternate icon"></i>
                         </a>
                         <button className='ui red basic icon button' onClick={() => handleDeleteClick(product)}>
                           <i className='trash icon' />
@@ -182,6 +178,8 @@ export const ProductList = () => {
                   onCancel={closeModal}
                   onConfirm={confirmDelete}
                   productName={selectedProduct.name}
+                  modalTitle='Eliminar producto'
+                  modalDescription='¿Estás seguro de que deseas eliminar'
                 />
               )}
               <div className="ui pagination menu">
@@ -198,3 +196,13 @@ export const ProductList = () => {
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  products: state.products || []
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchProducts: () => dispatch(fetchProducts()),
+  deleteProduct: (id) => dispatch(deleteProduct(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

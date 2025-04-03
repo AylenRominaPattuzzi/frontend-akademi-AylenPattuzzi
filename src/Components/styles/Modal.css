@@ -24,20 +24,3 @@
     display: flex;
     justify-content: space-around;
 }
-
-.cancel-button {
-    background: #ccc;
-    border: none;
-    border-radius: 10%;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.confirm-button {
-    background: red;
-    color: white;
-    border-radius: 10%;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}

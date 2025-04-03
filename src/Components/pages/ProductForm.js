@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addProduct } from '../../actions';
+import { connect } from 'react-redux';
+import { addProduct } from '../../store/actions/index';
 import { useNavigate } from 'react-router-dom';
+import { Header } from '../common/Header';
+import { Button } from '../common/Button'
+import { categories } from '../../utils/categories';
 
-export const ProductForm = () => {
-  const navigate = useNavigate()
-  const [showMessage, setShowMessage] = useState(false)
+const ProductForm = ({ addProduct }) => {
+  const navigate = useNavigate();
+  const [showMessage, setShowMessage] = useState(false);
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
@@ -13,33 +16,30 @@ export const ProductForm = () => {
   const [description, setDescription] = useState('');
   const [imageURL, setImageURL] = useState(null);
 
-  const dispatch = useDispatch();
-
   const validate = () => {
     if (!name.length > 0) {
-      alert("Ingrese el nombre del producto")
-      return false
+      alert("Ingrese el nombre del producto");
+      return false;
     }
-    if (!price > 0) {
-      alert("Ingrese un precio mayor a cero")
-      return false
+    if (!(price > 0)) {
+      alert("Ingrese un precio mayor a cero");
+      return false;
     }
     if (!category.length > 0) {
-      alert("Ingrese la categoria del producto")
-      return false
+      alert("Ingrese la categoría del producto");
+      return false;
     }
-    if (!stock >= 0) {
-      alert("El stock no puede ser negativo")
-      return false
+    if (!(stock >= 0)) {
+      alert("El stock no puede ser negativo");
+      return false;
     }
-
-    return true
-  }
+    return true;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
-      return
+      return;
     }
     const formData = {
       name,
@@ -49,9 +49,10 @@ export const ProductForm = () => {
       description,
       image_url: imageURL,
     };
-    dispatch(addProduct(formData));
-    setShowMessage(true)
-    setTimeout(() => navigate('/'), 2000)
+   
+    addProduct(formData);
+    setShowMessage(true);
+    setTimeout(() => navigate('/'), 2000);
   };
 
   const handleImageChange = (e) => {
@@ -59,19 +60,21 @@ export const ProductForm = () => {
     setImageURL(file);
   };
 
-
   return (
-    <div className='content'>
+    <div className='ui segment'>
+      <Header
+        title='AGREGAR PRODUCTO'
+      />
       {showMessage && (
         <div className="ui positive message">
           <div className="header">
-            Producto guardado con exito
+            Producto guardado con éxito
           </div>
         </div>
       )}
 
       <br />
-      <form className="ui form" onSubmit={onSubmit}>
+      <form className="ui large form" onSubmit={onSubmit}>
         <div className="two fields">
           <div className="field">
             <label>Nombre del producto</label>
@@ -103,22 +106,17 @@ export const ProductForm = () => {
         </div>
         <div className="two fields">
           <div className="field">
-            <label>Categoria</label>
+            <label>Categoría</label>
             <select
+              name="category"
               className="ui dropdown"
-              onChange={(e) => setCategory(e.target.value)}
               value={category}
+              onChange={e => setCategory(e.target.value)}
             >
               <option value="">Seleccione una categoría</option>
-              <option value="1">Laptop</option>
-              <option value="2">Celular</option>
-              <option value="3">Monitor</option>
-              <option value="4">Teclado</option>
-              <option value="5">Mouse</option>
-              <option value="6">Smartwatch</option>
-              <option value="7">Tablet</option>
-              <option value="8">Consola</option>
-              <option value="9">Cámara</option>
+              {Object.entries(categories).map(([key, value]) => (
+                <option key={key} value={value}>{value[0].toUpperCase() + value.substring(1)}</option>
+              ))}
             </select>
           </div>
           <div className="field">
@@ -142,10 +140,18 @@ export const ProductForm = () => {
             onChange={handleImageChange}
           />
         </div>
-        <button className="ui blue button" type="submit" >
-          Enviar
-        </button>
+        <Button
+          name='Enviar'
+          type="submit"
+        />
       </form>
     </div>
   );
 };
+
+// Conectar el componente con Redux
+const mapDispatchToProps = {
+  addProduct,
+};
+
+export default connect(null, mapDispatchToProps)(ProductForm);
