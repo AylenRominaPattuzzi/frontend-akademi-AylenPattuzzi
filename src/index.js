@@ -5,8 +5,6 @@ import { Provider } from "react-redux";
 import { App } from "./Components/App";
 import store from './store/store'
 
-
-
 // Seleccionar el elemento donde se montará la app
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(

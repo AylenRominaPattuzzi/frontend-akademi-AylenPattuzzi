@@ -8,6 +8,11 @@ import { Button } from '../common/Button'
 import { Loader } from '../common/Loader';
 import { categories } from '../../utils/categories';
 import noImage from '../../img/noImage.png'
+import '../styles/ProductDetail.css'
+import { Message } from '../common/Message';
+import { Field } from '../common/Field';
+import { getInitialFormData } from '../../utils/formHelpers';
+
 
 const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
   const { id: productId } = useParams();
@@ -20,42 +25,31 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
 
   const product = products?.find(p => p.id === productId) || null;
 
+
+
   useEffect(() => {
     if (products?.length === 0) fetchProducts();
   }, [fetchProducts, products?.length]);
 
   useEffect(() => {
     if (product) {
-      setFormData({
-        name: product.name || '',
-        price: product.price || '',
-        category: product.category || '',
-        stock: product.stock || '',
-        description: product.description || '',
-        image_url: product.image_url || ''
-      });
+      setFormData(getInitialFormData(product));
     }
   }, [product]);
 
   const validate = () => {
-    if (!formData.name) {
-      alert("Ingrese el nombre del producto");
-      return false;
-    }
-    if (!formData.price || formData.price <= 0) {
-      alert("Ingrese un precio mayor a cero");
-      return false;
-    }
-    if (!formData.category) {
-      alert("Ingrese la categoría del producto");
-      return false;
-    }
-    if (formData.stock < 0) {
-      alert("El stock no puede ser negativo");
-      return false;
-    }
-
+    const { name, price, category, stock } = formData;
+    if (!name) return alert("Ingrese el nombre del producto"), false;
+    if (!(price > 0)) return alert("Ingrese un precio mayor a cero"), false;
+    if (!category) return alert("Ingrese la categoría del producto"), false;
+    if (stock < 0) return alert("El stock no puede ser negativo"), false;
     return true;
+  };
+
+  const handleCancel = () => {
+    setFormData(getInitialFormData(product));
+    setDisabled(true);
+    setOpen(false);
   };
 
   const handleChange = (e) => {
@@ -65,20 +59,6 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
     });
   };
 
-  const handleCancel = () => {
-    setFormData({
-      name: product.name || '',
-      price: product.price || '',
-      category: product.category || '',
-      stock: product.stock || '',
-      description: product.description || '',
-      image_url: product.image_url || ''
-    });
-    setDisabled(true);
-    setOpen(false);
-  };
-
-
   const closeModal = () => {
     setOpen(false);
   };
@@ -86,44 +66,54 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
   const handleSave = (e) => {
     e.preventDefault();
     if (!validate()) return;
+
     updateProduct(product.id, formData);
     setDisabled(true);
     setShowMessage(true);
     setTimeout(() => navigate('/'), 2000);
   };
 
-  if (!product) {
-    return <Loader />
-  }
-
   return (
     <div className="ui segment">
+      {!product && (
+        <Loader />
+      )}
       {showMessage && (
-        <div className="ui positive message">
-          <div className="header">
-            Producto editado con éxito
-          </div>
-        </div>
+        <Message
+          message='Producto editado con éxito'
+          stateMessage='positive'
+        />
       )}
       <Header
         title='DETALLE DEL PRODUCTO'
       />
-      <br/>
+      <br />
       <form className="ui big form">
-        <img
-          className="ui medium left floated image"
-          src={formData.image_url || noImage}
-          alt={formData.name}
-        />
+        <div className='imageContainer ui medium left floated image'>
+          <img
+            src={formData.image_url || noImage}
+            alt={formData.name}
+          />
+        </div>
         <div className="two fields">
-          <div className="ui field">
-            <label>Nombre del producto</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} disabled={disabled} />
-          </div>
-          <div className="ui field">
-            <label>Precio</label>
-            <input type="number" name="price" value={formData.price} onChange={handleChange} disabled={disabled} />
-          </div>
+          <Field
+            label='Nombre del producto'
+            type='text'
+            value={formData.name}
+            onChange={handleChange}
+            disabled={disabled}
+            placeholder="Ingrese el nombre del producto"
+            name='name'
+          />
+          <Field
+            label='Precio'
+            type='number'
+            value={formData.price}
+            onChange={handleChange}
+            disabled={disabled}
+            placeholder="Ingrese el precio del producto"
+            name='price'
+          />
         </div>
         <div className="two fields">
           <div className="ui field">
@@ -141,16 +131,28 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
               ))}
             </select>
           </div>
-          <div className="ui field">
-            <label>Stock</label>
-            <input type="number" name="stock" value={formData.stock} onChange={handleChange} disabled={disabled} />
-          </div>
+          <Field
+            label='Stock'
+            type='number'
+            value={formData.stock}
+            onChange={handleChange}
+            disabled={disabled}
+            placeholder="Ingrese el stock del producto"
+            name='stock'
+          />
         </div>
+
         <div className="two fields">
-          <div className="ui sixteen wide field">
-            <label>Descripción</label>
-            <textarea name="description" rows="3" value={formData.description} onChange={handleChange} disabled={disabled}></textarea>
-          </div>
+          <Field
+            label="Descripción"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            isTextArea={true}
+            rows={3}
+            disabled={disabled}
+            wide='sixteen'
+          />
         </div>
         <div>
           {disabled ? (
@@ -169,7 +171,7 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
           )}
           <Button
             type='submit'
-            name='Guarda'
+            name='Guardar'
             color='green'
             onClick={handleSave} disabled={disabled}
           />
@@ -189,16 +191,14 @@ const ProductDetail = ({ products, fetchProducts, updateProduct }) => {
   );
 };
 
-//Mapear el estado global al componente como props
+
 const mapStateToProps = (state) => ({
   products: state.products
 });
 
-//Mapear las acciones al componente como props
 const mapDispatchToProps = {
   fetchProducts,
   updateProduct
 };
 
-//Conectar el componente con Redux
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);

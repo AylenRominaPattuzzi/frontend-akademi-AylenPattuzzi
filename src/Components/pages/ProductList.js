@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { deleteProduct, fetchProducts } from '../../store/actions/index';
 import Modal from '../modals/Modal';
-import noImage from '../../img/noImage.png'
 import { connect } from 'react-redux';
 import { Header } from '../common/Header';
+import { CardProduct } from '../common/CardProduct';
+import '../styles/ProductList.css'
+import { Message } from '../common/Message';
 
 const ProductList = ({ products, fetchProducts, deleteProduct }) => {
-  const [productsPerPage, setProductsPerPage] = useState(9)
+  const [productsPerPage, setProductsPerPage] = useState(9);
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(0);
   const [open, setOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
-  const [order, setOrder] = useState()
+  const [order, setOrder] = useState('');
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts, products]);
-
+  }, [fetchProducts]);
 
   const handleDeleteClick = (product) => {
     setSelectedProduct(product);
@@ -33,6 +34,7 @@ const ProductList = ({ products, fetchProducts, deleteProduct }) => {
       setSelectedProduct(null);
       setTimeout(() => setShowMessage(false), 2000);
       fetchProducts();
+      setPage(0)
     }
   };
 
@@ -42,7 +44,9 @@ const ProductList = ({ products, fetchProducts, deleteProduct }) => {
   };
 
   const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase()) || String(product.stock).includes(search);
+    const matchesSearch =
+      product.name.toLowerCase().includes(search.toLowerCase()) ||
+      String(product.stock).includes(search);
     const matchesFilter =
       !filter ||
       (filter === '1' && product.category.toLowerCase() === 'laptop') ||
@@ -55,60 +59,60 @@ const ProductList = ({ products, fetchProducts, deleteProduct }) => {
       (filter === '8' && product.category.toLowerCase() === 'consola') ||
       (filter === '9' && product.category.toLowerCase() === 'cámara');
 
-    return matchesSearch && matchesFilter
+    return matchesSearch && matchesFilter;
   });
 
   const orderProducts = () => {
     switch (order) {
-      case "1":
-        return filteredProducts.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1)
-      case "2":
-        return filteredProducts.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1)
-      case "3":
-        return filteredProducts.sort((a, b) => a.price - b.price)
-      case "4":
-        return filteredProducts.sort((a, b) => b.price - a.price)
+      case '1':
+        return filteredProducts.sort((a, b) =>
+          a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
+        );
+      case '2':
+        return filteredProducts.sort((a, b) =>
+          a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1
+        );
+      case '3':
+        return filteredProducts.sort((a, b) => a.price - b.price);
+      case '4':
+        return filteredProducts.sort((a, b) => b.price - a.price);
       default:
-        return filteredProducts
-
+        return filteredProducts;
     }
-  }
+  };
 
   const getPages = () => {
-    return [...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()]
-  }
+    return [...Array(Math.ceil(filteredProducts.length / productsPerPage)).keys()];
+  };
 
   const getTableProducts = () => {
-    const start = productsPerPage * page
-    const end = productsPerPage * (page + 1) > filteredProducts.length ? filteredProducts.length : productsPerPage * (page + 1)
-    return orderProducts().slice(start, end)
-  }
+    const start = productsPerPage * page;
+    const end =
+      productsPerPage * (page + 1) > filteredProducts.length
+        ? filteredProducts.length
+        : productsPerPage * (page + 1);
+    return orderProducts().slice(start, end);
+  };
 
   return (
-    <div className='ui segment'>
+    <div className="ui segment">
       {showMessage && (
-        <div className="ui positive message">
-          <div className="header">
-            Producto eliminado con exito
-          </div>
-        </div>
+        <Message
+          message='Producto eliminado con éxito'
+          stateMessage='positive'
+        />
       )}
-      <Header
-        title='LISTADO DE PRODUCTOS'
-      />
+      <Header title="LISTADO DE PRODUCTOS" />
       <br />
       <div>
         <div className="ui action input">
           <input
             type="text"
             placeholder="Buscar... "
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             value={search}
           />
-          <select
-            className="ui compact selection dropdown"
-            onChange={e => setFilter(e.target.value)}
-          >
+          <select className="ui compact selection dropdown" onChange={(e) => setFilter(e.target.value)}>
             <option value="">Filtrar</option>
             <option value="1">Laptop</option>
             <option value="2">Celular</option>
@@ -120,10 +124,7 @@ const ProductList = ({ products, fetchProducts, deleteProduct }) => {
             <option value="8">Consola</option>
             <option value="9">Cámara</option>
           </select>
-          <select
-            className="ui compact selection dropdown"
-            onChange={e => setOrder(e.target.value)}
-          >
+          <select className="ui compact selection dropdown" onChange={(e) => setOrder(e.target.value)}>
             <option value="">Ordenar</option>
             <option value="1">Nombre (asc)</option>
             <option value="2">Nombre (desc)</option>
@@ -132,77 +133,49 @@ const ProductList = ({ products, fetchProducts, deleteProduct }) => {
           </select>
         </div>
 
-        {getTableProducts().length === 0 ?
-
+        {getTableProducts().length === 0 ? (
           <h2 className="ui center aligned icon grey header">
             <i className="ban grey icon"></i>
             No hay productos disponibles
-          </h2> : (
-            <>
-              <table className="ui celled table">
-                <thead>
-                  <tr>
-                    <th>PRODUCTO</th>
-                    <th>CATEGORIA</th>
-                    <th>PRECIO</th>
-                    <th>STOCK</th>
-                    <th>DESCRIPCIÓN</th>
-                    <th>IMAGEN</th>
-                    <th>ACCIONES</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getTableProducts().map(product => (
-                    <tr key={product.id}>
-                      <td>{product.name}</td>
-                      <td>{product.category[0].toUpperCase() + product.category.substring(1)}</td>
-                      <td>${product.price}</td>
-                      <td>{product.stock}</td>
-                      <td>{product.description}</td>
-                      <td><img src={product.image_url || noImage} width='50' alt="" /></td>
-                      <td>
-                        <a className='ui blue basic icon button' href={`/product/${product.id}`}>
-                          <i className='eye icon' />
-                        </a>
-                        <button className='ui red basic icon button' onClick={() => handleDeleteClick(product)}>
-                          <i className='trash icon' />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
-              {open && selectedProduct && (
-                <Modal
-                  onCancel={closeModal}
-                  onConfirm={confirmDelete}
-                  productName={selectedProduct.name}
-                  modalTitle='Eliminar producto'
-                  modalDescription='¿Estás seguro de que deseas eliminar'
-                />
-              )}
-              <div className="ui pagination menu">
-                {getPages().map((numero) => (
-                  <a className="active item" onClick={() => setPage(numero)}>
-                    {numero + 1}
-                  </a>
-                ))}
-              </div>
-            </>
-          )}
+          </h2>
+        ) : (
+          <>
+            <div className="ui three cards productContainer">
+              {getTableProducts().map((product) => (
+                <CardProduct key={product.id} product={product} onDelete={handleDeleteClick} />
+              ))}
+            </div>
+            {open && selectedProduct && (
+              <Modal
+                onCancel={closeModal}
+                onConfirm={confirmDelete}
+                productName={selectedProduct.name}
+                modalTitle="Eliminar producto"
+                modalDescription="¿Estás seguro de que deseas eliminar este producto?"
+              />
+            )}
+            <div className="ui pagination menu ">
+              {getPages().map((numero) => (
+                <a className="active item" onClick={() => setPage(numero)} key={numero}>
+                  {numero + 1}
+                </a>
+              ))}
+            </div>
+          </>
+        )}
       </div>
       <br />
     </div>
   );
 };
+
 const mapStateToProps = (state) => ({
-  products: state.products || []
+  products: state.products || [],
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  deleteProduct: (id) => dispatch(deleteProduct(id))
+  deleteProduct: (id) => dispatch(deleteProduct(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

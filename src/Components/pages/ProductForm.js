@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { addProduct } from '../../store/actions/index';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../common/Header';
-import { Button } from '../common/Button'
+import { Button } from '../common/Button';
 import { categories } from '../../utils/categories';
+import { Message } from '../common/Message';
+import { Field } from '../common/Field';
 
 const ProductForm = ({ addProduct }) => {
   const navigate = useNavigate();
@@ -38,9 +40,8 @@ const ProductForm = ({ addProduct }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
+
     const formData = {
       name,
       category,
@@ -49,7 +50,7 @@ const ProductForm = ({ addProduct }) => {
       description,
       image_url: imageURL,
     };
-   
+
     addProduct(formData);
     setShowMessage(true);
     setTimeout(() => navigate('/'), 2000);
@@ -62,48 +63,39 @@ const ProductForm = ({ addProduct }) => {
 
   return (
     <div className='ui segment'>
-      <Header
-        title='AGREGAR PRODUCTO'
-      />
+      <Header title='AGREGAR PRODUCTO' />
       {showMessage && (
-        <div className="ui positive message">
-          <div className="header">
-            Producto guardado con éxito
-          </div>
-        </div>
+        <Message
+          message='Producto creado con éxito'
+          stateMessage='positive'
+        />
       )}
-
       <br />
       <form className="ui large form" onSubmit={onSubmit}>
         <div className="two fields">
-          <div className="field">
-            <label>Nombre del producto</label>
-            <input
-              placeholder="Ingrese el nombre del producto"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-          </div>
-          <div className="field">
-            <label>Precio</label>
-            <input
-              placeholder="Ingrese el precio del producto"
-              type="number"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            />
-          </div>
+          <Field
+            label='Nombre del producto'
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Ingrese el nombre del producto"
+          />
+          <Field
+            label='Precio'
+            type='number'
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Ingrese el precio del producto"
+          />
         </div>
-        <div className="field">
-          <label>Descripción</label>
-          <textarea
-            rows="2"
-            placeholder="Ingrese una descripción del producto"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          ></textarea>
-        </div>
+        <Field
+          label="Descripción"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          isTextArea={true}
+          rows={2}
+          placeholder="Ingrese una descripción del producto"
+        />
         <div className="two fields">
           <div className="field">
             <label>Categoría</label>
@@ -119,20 +111,18 @@ const ProductForm = ({ addProduct }) => {
               ))}
             </select>
           </div>
-          <div className="field">
-            <label>Stock</label>
-            <input
-              placeholder="Ingrese el stock del producto"
-              type="number"
-              onChange={(e) => setStock(e.target.value)}
-              value={stock}
-            />
-          </div>
+          <Field
+            label='Stock'
+            type='number'
+            value={stock}
+            onChange={(e) => setStock(e.target.value)}
+            placeholder="Ingrese el stock del producto"
+          />
         </div>
         <div className="ui placeholder segment">
           <div className="ui icon header">
             <i className="camera retro icon"></i>
-            Ingrese una imagen del producto
+            Seleccione una imagen del producto
           </div>
           <input
             className="ui field"
@@ -149,7 +139,6 @@ const ProductForm = ({ addProduct }) => {
   );
 };
 
-// Conectar el componente con Redux
 const mapDispatchToProps = {
   addProduct,
 };
