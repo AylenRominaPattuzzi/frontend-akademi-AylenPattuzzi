@@ -79,15 +79,15 @@ Se incluye el `<Provider>` en el punto de entrada (`main.jsx`) para inyectar el 
 Los productos se manejan como un JSON que podría venir desde un backend o API externa en el futuro. Por ahora, es una simulación de productos reales con esta estructura:
 
 ```json
-{
-  "name": "Samsung Galaxy S23 Ultra",
-  "price": 1,
-  "category": "celular",
-  "stock": 20,
-  "description": "Celular Samsung con cámara de 200MP",
-  "image_url": "https://...",
-  "id": "3"
-}
+ {
+  "id": "4",
+  "name": "MacBook Air M2",
+  "category": "laptop",
+  "price": 1799999,
+  "stock": 8,
+  "description": "Laptop ultradelgada con chip M2",
+  "image_url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-config-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1654122880566"
+},
 ```
 
 ## ▶️ Cómo correr el proyecto
