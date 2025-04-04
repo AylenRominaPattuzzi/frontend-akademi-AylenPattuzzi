@@ -1,0 +1,12 @@
+.imageContainer {
+    display: flex;
+    align-items: center;  
+    justify-content: center;  
+    overflow: hidden; 
+  }
+  
+  .imageContainer img {
+    max-width: 115%;
+    object-fit: contain;
+  }
+  

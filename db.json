@@ -1,0 +1,220 @@
+{
+  "products": [
+    {
+      "name": "Samsung Galaxy S23 Ultra A",
+      "price": "1",
+      "category": "celular",
+      "stock": 20,
+      "description": "Celular Samsung con cámara de 200MP fsdfdsfsdfdffd",
+      "image_url": "https://www.oscarbarbieri.com/pub/media/catalog/product/cache/7baadf0dec41407c7702efdbff940ecb/s/a/samsung_s23_ultra.jpg",
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "name": "MacBook Air M2",
+      "category": "laptop",
+      "price": 1799999,
+      "stock": 8,
+      "description": "Laptop ultradelgada con chip M2",
+      "image_url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-midnight-config-20220606?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1654122880566"
+    },
+    {
+      "id": "5",
+      "name": "Sony WH-1000XM5",
+      "category": "auriculares",
+      "price": 599999,
+      "stock": 12,
+      "description": "Auriculares inalámbricos con cancelación de ruido",
+      "image_url": "https://arsonyb2c.vtexassets.com/arquivos/ids/364192-1600-auto?v=638623507689900000&width=1600&height=auto&aspect=true"
+    },
+    {
+      "id": "7",
+      "name": "Teclado Mecánico HyperX Alloy",
+      "category": "teclado",
+      "price": 349999,
+      "stock": 25,
+      "description": "Teclado mecánico RGB con switches rojos",
+      "image_url": "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_origins_us_1_top_down_900x.jpg?v=1734473781"
+    },
+    {
+      "name": "Mouse Logitech G502 Heroz",
+      "price": 259999,
+      "category": "mouse",
+      "stock": 18,
+      "description": "Mouse gamer con 11 botones programables",
+      "image_url": "https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_UF1000,1000_QL80_.jpg",
+      "id": "8"
+    },
+    {
+      "id": "9",
+      "name": "Smartwatch Apple Watch Series 8",
+      "category": "smartwatch",
+      "price": 999999,
+      "stock": 9,
+      "description": "Reloj inteligente con sensores avanzados de salud",
+      "image_url": "https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111848_apple-watch-series8.png"
+    },
+    {
+      "id": "10",
+      "name": "Tablet Samsung Galaxy Tab S8",
+      "category": "tablet",
+      "price": 1299999,
+      "stock": 7,
+      "description": "Tablet de alto rendimiento con S-Pen",
+      "image_url": "https://i.ebayimg.com/thumbs/images/g/MJEAAOSwRg5lMu8Z/s-l500.jpg"
+    },
+    {
+      "id": "13",
+      "name": "iPhone 15 Pro Max",
+      "category": "celular",
+      "price": 2199999,
+      "stock": 15,
+      "description": "El nuevo iPhone 15 Pro Max con chip A17 Pro, cámara de última generación y diseño en titanio.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_768125-MLA71783090116_092023-O.webp"
+    },
+    {
+      "id": "14",
+      "name": "Xiaomi Redmi Note 13 Pro",
+      "category": "celular",
+      "price": 649999,
+      "stock": 25,
+      "description": "Smartphone con pantalla AMOLED, cámara de 200MP y batería de larga duración.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_894018-MLA81982521213_012025-O.webp"
+    },
+    {
+      "id": "15",
+      "name": "Dell XPS 15",
+      "category": "laptop",
+      "price": 2399999,
+      "stock": 5,
+      "description": "Laptop premium con pantalla InfinityEdge, procesador Intel i7 y diseño elegante.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_783814-MLU78722284151_082024-O.webp"
+    },
+    {
+      "id": "16",
+      "name": "HP Omen 16",
+      "category": "laptop",
+      "price": 1899999,
+      "stock": 10,
+      "description": "Notebook gamer con GPU NVIDIA RTX, pantalla de alta tasa de refresco y teclado retroiluminado.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_648375-MLU70775809619_072023-O.webp"
+    },
+    {
+      "id": "17",
+      "name": "Asus ZenBook 14",
+      "category": "laptop",
+      "price": 1549999,
+      "stock": 12,
+      "description": "Ultrabook liviana con gran autonomía, ideal para la productividad en movimiento.",
+      "image_url": "https://mauricomputacion.com.ar/images/productos/500x500/25281.webp"
+    },
+    {
+      "id": "18",
+      "name": "Sony WF-1000XM4",
+      "category": "auriculares",
+      "price": 449999,
+      "stock": 30,
+      "description": "Auriculares inalámbricos con cancelación de ruido líder en la industria y sonido de alta fidelidad.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_873050-MLA48403712952_122021-O.webp"
+    },
+    {
+      "id": "19",
+      "name": "AirPods Pro 2",
+      "category": "auriculares",
+      "price": 579999,
+      "stock": 20,
+      "description": "Auriculares con chip H2, cancelación activa mejorada y estuche de carga MagSafe.",
+      "image_url": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MME73?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1632861342000"
+    },
+    {
+      "id": "20",
+      "name": "Razer BlackWidow V4 Pro",
+      "category": "teclado",
+      "price": 599999,
+      "stock": 10,
+      "description": "Teclado gamer mecánico con switches verdes, iluminación RGB y controles multimedia dedicados.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_736196-MLU70013337831_062023-O.webp"
+    },
+    {
+      "id": "21",
+      "name": "Logitech MX Keys",
+      "category": "teclado",
+      "price": 329999,
+      "stock": 14,
+      "description": "Teclado inalámbrico de perfil bajo con teclas cóncavas para una escritura precisa y cómoda.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_865905-MLU70993720658_082023-O.webp"
+    },
+    {
+      "id": "22",
+      "name": "Logitech MX Master 3S",
+      "category": "mouse",
+      "price": 369999,
+      "stock": 20,
+      "description": "Mouse ergonómico avanzado con scroll electromagnético y alta precisión para multitarea.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_945737-MLA50896130021_072022-O.webp"
+    },
+    {
+      "id": "23",
+      "name": "Razer DeathAdder V2",
+      "category": "mouse",
+      "price": 289999,
+      "stock": 25,
+      "description": "Mouse gamer ergonómico con sensor óptico de 20.000 DPI y switches ópticos Razer.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_774535-MLU72611761209_112023-O.webp"
+    },
+    {
+      "id": "24",
+      "name": "Apple Watch Ultra",
+      "category": "smartwatch",
+      "price": 1899999,
+      "stock": 6,
+      "description": "Reloj para deportes extremos con GPS dual, resistencia al agua y duración extendida de batería.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_2X_882490-MLU77852262960_072024-F.webp"
+    },
+    {
+      "id": "25",
+      "name": "Samsung Galaxy Watch 6",
+      "category": "smartwatch",
+      "price": 899999,
+      "stock": 18,
+      "description": "Smartwatch con pantalla Super AMOLED y funciones avanzadas de salud y fitness.",
+      "image_url": "https://images.samsung.com/is/image/samsung/p6pim/ar/2307/gallery/ar-galaxy-watch6-r935-sm-r930nzeaaro-537402293?$684_547_PNG$"
+    },
+    {
+      "id": "26",
+      "name": "iPad Pro 12.9 M2",
+      "category": "tablet",
+      "price": 2599999,
+      "stock": 5,
+      "description": "Tablet profesional con chip M2, pantalla Liquid Retina XDR y compatibilidad con Apple Pencil 2.",
+      "image_url": "https://ipoint.com.ar/26820-thickbox_default/ipad-pro-129-wi-fi-128gb-5ta-gen-space-gray.jpg"
+    },
+    {
+      "id": "27",
+      "name": "Amazon Fire HD 10",
+      "category": "tablet",
+      "price": 299999,
+      "stock": 30,
+      "description": "Tablet asequible con pantalla Full HD de 10.1”, ideal para entretenimiento y navegación.",
+      "image_url": "https://www.venex.com.ar/mods/html/fil/Model/ProductGrouper/140/6374cb83ec660-amazon-2.png"
+    },
+    {
+      "id": "28",
+      "name": "LG UltraGear 27GP950",
+      "category": "monitor",
+      "price": 1299999,
+      "stock": 8,
+      "description": "Monitor gamer 4K de 27” con 144Hz, compatibilidad G-SYNC y HDR600.",
+      "image_url": "https://www.lg.com/ar/images/monitores/md07569671/gallery/27GP950-1.jpg"
+    },
+    {
+      "id": "29",
+      "name": "BenQ EX3501R",
+      "category": "monitor",
+      "price": 999999,
+      "stock": 6,
+      "description": "Monitor curvo ultrawide de 35” con resolución QHD y tecnología HDR para una experiencia envolvente.",
+      "image_url": "https://http2.mlstatic.com/D_NQ_NP_896997-MLU73422712272_122023-O.webp"
+    }
+  ]
+}
