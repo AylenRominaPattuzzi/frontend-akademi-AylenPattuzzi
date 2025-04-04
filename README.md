@@ -1,3 +1,4 @@
+
 ## 🚀 Tecnologías usadas
 
 - ⚛️ React
@@ -112,4 +113,4 @@ npm run dev
 
 ## 📄 Licencia
 
-MIT © [AylenPattuzzi](https://github.com/AylenRominaPattuzzi)
+MIT © [AylenPattuzzi](https://github.com/AylenRominaPattuzzi
