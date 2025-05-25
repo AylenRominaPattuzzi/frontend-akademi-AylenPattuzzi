@@ -7,5 +7,5 @@ export const categories = {
     SMARTWATCH: "smartwatch",
     TABLET: "tablet",
     CONSOLE: "consola",
-    CAMERA: "cámara"
+    CAMERA: "cámara",
 }

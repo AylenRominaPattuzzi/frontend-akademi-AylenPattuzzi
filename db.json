@@ -28,13 +28,13 @@
       "image_url": "https://arsonyb2c.vtexassets.com/arquivos/ids/364192-1600-auto?v=638623507689900000&width=1600&height=auto&aspect=true"
     },
     {
-      "id": "7",
-      "name": "Teclado Mecánico HyperX Alloy",
+      "name": "Samsung Galaxy S23 Ultra",
+      "price": "4234324",
       "category": "teclado",
-      "price": 349999,
-      "stock": 25,
-      "description": "Teclado mecánico RGB con switches rojos",
-      "image_url": "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_origins_us_1_top_down_900x.jpg?v=1734473781"
+      "stock": "56",
+      "description": "Teclado mecánico RGB con switches ",
+      "image_url": "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_origins_us_1_top_down_900x.jpg?v=1734473781",
+      "id": "7"
     },
     {
       "name": "Mouse Logitech G502 Heroz",
